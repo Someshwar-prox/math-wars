@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Wars - Endless Arena</title>
+    <meta name="description" content="Epic math battle game with infinite levels and progressive difficulty">
+    <meta name="keywords" content="math game, educational, puzzle, battle, arena, infinite levels">
+    <meta name="author" content="Someshwar">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a16">
+
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="screen active">
+            <div class="loading-content">
+                <div class="loading-animation">
+                    <div class="math-symbol">∑</div>
+                    <div class="math-symbol">π</div>
+                    <div class="math-symbol">∞</div>
+                    <div class="math-symbol">∆</div>
+                </div>
+                <h2>INITIALIZING MATH WARS</h2>
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p>Loading epic math battles...</p>
+            </div>
+        </div>
+
+        <!-- Splash Screen -->
+        <div id="splash-screen" class="screen">
+            <div class="splash-content">
+                <div class="title-container">
+                    <h1 class="game-title">MATH WARS</h1>
+                    <p class="game-subtitle">ENDLESS ARENA</p>
+                </div>
+                
+                <div class="feature-highlights">
+                    <div class="feature">⚡ Infinite Levels</div>
+                    <div class="feature">🎯 Progressive Difficulty</div>
+                    <div class="feature">😂 Hilarious Roasts</div>
+                    <div class="feature">🏆 Achievement System</div>
+                </div>
+                
+                <div class="splash-buttons">
+                    <button id="login-btn" class="btn-primary">
+                        <span class="btn-icon">🔐</span>
+                        LOGIN
+                    </button>
+                    <button id="register-btn" class="btn-secondary">
+                        <span class="btn-icon">🚀</span>
+                        REGISTER
+                    </button>
+                    <button id="guest-btn" class="btn-tertiary">
+                        <span class="btn-icon">🎮</span>
+                        PLAY AS GUEST
+                    </button>
+                </div>
+                
+                <div class="stats-preview">
+                    <div class="stat-preview">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Levels</span>
+                    </div>
+                    <div class="stat-preview">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Question Types</span>
+                    </div>
+                    <div class="stat-preview">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label">Power-ups</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Screen -->
+        <div id="login-screen" class="screen">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>LOGIN TO BATTLE</h2>
+                    <p>Enter the math arena warrior!</p>
+                </div>
+                <form id="login-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="text" id="login-username" placeholder="Username" required>
+                        <span class="input-icon">👤</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <span class="input-icon">🔒</span>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        <span class="btn-icon">⚔️</span>
+                        ENTER ARENA
+                    </button>
+                </form>
+                <button id="back-to-splash" class="btn-tertiary btn-full">
+                    <span class="btn-icon">←</span>
+                    BACK
+                </button>
+            </div>
+        </div>
+
+        <!-- Register Screen -->
+        <div id="register-screen" class="screen">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>JOIN THE WAR</h2>
+                    <p>Become a math legend!</p>
+                </div>
+                <form id="register-form" class="auth-form">
+                    <div class="input-group">
+                        <input type="text" id="register-username" placeholder="Choose Username" required minlength="3">
+                        <span class="input-icon">👤</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="register-password" placeholder="Create Password" required minlength="4">
+                        <span class="input-icon">🔒</span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                        <span class="input-icon">✅</span>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        <span class="btn-icon">🎯</span>
+                        ENLIST NOW
+                    </button>
+                </form>
+                <button id="back-to-splash-register" class="btn-tertiary btn-full">
+                    <span class="btn-icon">←</span>
+                    BACK
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="player-info">
+                    <div class="player-avatar">
+                        <span id="player-icon">🧠</span>
+                    </div>
+                    <div class="player-details">
+                        <span id="player-name" class="player-name">Guest</span>
+                        <div class="level-badge">Level <span id="current-level">1</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat">
+                        <span class="stat-icon">💰</span>
+                        <span id="coins-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">🔥</span>
+                        <span id="streak-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-icon">⚡</span>
+                        <span id="score-count" class="stat-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="health-container">
+                    <div class="health-header">
+                        <span class="health-icon">❤️</span>
+                        <span class="health-text">HEALTH</span>
+                    </div>
+                    <div class="health-bar">
+                        <div id="health-fill" class="health-fill"></div>
+                        <div class="health-glow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-content">
+                <div class="question-container">
+                    <div class="question-header">
+                        <div class="question-meta">
+                            <span id="question-number" class="question-counter">Question 1/10</span>
+                            <span class="difficulty-badge" id="difficulty-badge">Easy</span>
+                        </div>
+                        <div class="timer-container">
+                            <div class="timer-circle">
+                                <svg class="timer-svg" viewBox="0 0 36 36">
+                                    <path class="timer-circle-bg"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path id="timer-path" class="timer-circle-fill"
+                                        d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                </svg>
+                                <span id="timer" class="timer-text">30</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="question-text" class="question-text">
+                        What is 5 + 3?
+                    </div>
+                    
+                    <div class="answers-grid" id="answers-grid">
+                        <!-- Answers will be populated dynamically -->
+                    </div>
+                    
+                    <div class="question-footer">
+                        <div class="streak-display">
+                            <span class="streak-label">Current Streak:</span>
+                            <div class="streak-fire" id="streak-fire">🔥</div>
+                            <span id="current-streak" class="streak-count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="powerups-container">
+                    <div class="powerup-section">
+                        <h3 class="powerup-title">BATTLE TOOLS</h3>
+                        <div class="powerup-grid">
+                            <button id="hint-btn" class="powerup-btn" data-cost="10">
+                                <span class="powerup-icon">💡</span>
+                                <span class="powerup-name">Hint</span>
+                                <span class="powerup-cost">10 coins</span>
+                            </button>
+                            <button id="skip-btn" class="powerup-btn" data-cost="25">
+                                <span class="powerup-icon">⏩</span>
+                                <span class="powerup-name">Skip</span>
+                                <span class="powerup-cost">25 coins</span>
+                            </button>
+                            <button id="retry-btn" class="powerup-btn" data-cost="50">
+                                <span class="powerup-icon">🔄</span>
+                                <span class="powerup-name">Retry</span>
+                                <span class="powerup-cost">50 coins</span>
+                            </button>
+                            <button id="freeze-btn" class="powerup-btn" data-cost="30">
+                                <span class="powerup-icon">❄️</span>
+                                <span class="powerup-name">Freeze Time</span>
+                                <span class="powerup-cost">30 coins</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="roast-message" class="roast-message"></div>
+            <div id="combo-message" class="combo-message"></div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="level-complete-screen" class="screen">
+            <div class="completion-container">
+                <div class="completion-header">
+                    <div class="completion-icon">🎉</div>
+                    <h2>LEVEL <span id="completed-level">1</span> CONQUERED!</h2>
+                    <p class="completion-subtitle">The math gods are impressed!</p>
+                </div>
+                
+                <div class="completion-stats">
+                    <div class="stat-card">
+                        <div class="stat-card-icon">⭐</div>
+                        <span class="stat-card-label">SCORE</span>
+                        <span id="level-score" class="stat-card-value">850</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">💰</div>
+                        <span class="stat-card-label">COINS EARNED</span>
+                        <span id="coins-earned" class="stat-card-value">100</span>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon">⚡</div>
+                        <span class="stat-card-label">TIME BONUS</span>
+                        <span id="time-bonus" class="stat-card-value">50</span>
+                    </div>
+                </div>
+                
+                <div class="performance-rating">
+                    <div class="rating-stars" id="rating-stars">
+                        <span>⭐</span><span>⭐</span><span>⭐</span>
+                    </div>
+                    <span id="performance-text" class="performance-text">Math Genius!</span>
+                </div>
+                
+                <button id="next-level-btn" class="btn-primary btn-large">
+                    <span class="btn-icon">🚀</span>
+                    NEXT LEVEL
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen">
+            <div class="game-over-container">
+                <div class="game-over-header">
+                    <div class="game-over-icon">💀</div>
+                    <h2>MISSION FAILED</h2>
+                </div>
+                
+                <div class="final-roast-container">
+                    <p id="final-roast" class="final-roast">Better luck next time, soldier!</p>
+                </div>
+                
+                <div class="final-stats">
+                    <div class="final-stat">
+                        <span class="final-stat-label">Level Reached</span>
+                        <span id="final-level" class="final-stat-value">1</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Total Coins</span>
+                        <span id="final-coins" class="final-stat-value">0</span>
+                    </div>
+                    <div class="final-stat">
+                        <span class="final-stat-label">Best Streak</span>
+                        <span id="final-streak" class="final-stat-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="game-over-buttons">
+                    <button id="retry-level-btn" class="btn-primary">
+                        <span class="btn-icon">🔄</span>
+                        RETRY LEVEL
+                    </button>
+                    <button id="main-menu-btn" class="btn-secondary">
+                        <span class="btn-icon">🏠</span>
+                        MAIN MENU
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="settings-panel">
+            <button id="settings-toggle" class="settings-toggle">⚙️</button>
+            <div class="settings-content">
+                <h3>SETTINGS</h3>
+                <div class="setting-group">
+                    <label class="setting-label">
+                        <input type="checkbox" id="sound-toggle" checked>
+                        <span class="setting-text">Sound Effects</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label class="setting-label">
+                        <input type="checkbox" id="music-toggle" checked>
+                        <span class="setting-text">Background Music</span>
+                    </label>
+                </div>
+                <button id="logout-btn" class="btn-tertiary">Logout</button>
+            </div>
+        </div>
+
+        <!-- Audio Elements -->
+        <audio id="correct-sound" src="assets/sounds/correct.mp3" preload="auto"></audio>
+        <audio id="wrong-sound" src="assets/sounds/wrong.mp3" preload="auto"></audio>
+        <audio id="levelup-sound" src="assets/sounds/levelup.mp3" preload="auto"></audio>
+        <audio id="click-sound" src="assets/sounds/click.mp3" preload="auto"></audio>
+    </div>
+
+    <script src="js/user.js"></script>
+    <script src="js/questions.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
