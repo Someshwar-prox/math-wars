@@ -228,3 +228,4 @@ This project is open source and available under the **MIT License** - free for e
 ---
 
 *Math Wars: Where every equation tells a story, and every solution is a victory.* 🏆
+
